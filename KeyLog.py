@@ -1,12 +1,15 @@
-import streamlit as st
+import tkinter as tk
+from tkinter import messagebox, scrolledtext
 import keyboard
 import threading
 import datetime
 import csv
 import pandas as pd
 
-class KeyLogger:
-    def __init__(self):
+class KeyLoggerApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Keyboard Logger")
         self.is_logging = False
         self.log_thread = None
         self.filename = None
@@ -18,6 +21,19 @@ class KeyLogger:
             'alt gr': 'alt',
             'right alt': 'alt'
         }
+
+        # UI Elements
+        self.start_btn = tk.Button(root, text="Start Logging", command=self.start_logging, bg='green', fg='white')
+        self.start_btn.pack(pady=10)
+
+        self.stop_btn = tk.Button(root, text="Stop Logging", command=self.stop_logging, bg='red', fg='white', state=tk.DISABLED)
+        self.stop_btn.pack(pady=10)
+
+        self.log_display = scrolledtext.ScrolledText(root, height=15, width=60)
+        self.log_display.pack(pady=10)
+
+        self.status_label = tk.Label(root, text="Status: Not Logging", fg='blue')
+        self.status_label.pack(pady=5)
 
     def log_keystrokes(self):
         pressed_keys = set()
@@ -32,18 +48,15 @@ class KeyLogger:
                     if key_name in self.special_keys:
                         pressed_keys.add(key_name)
                     else:
-                        if pressed_keys:
-                            combination = '+'.join(pressed_keys) + '+' + key_name
-                            writer.writerow([combination])
-                        else:
-                            writer.writerow([key_name])
+                        combination = '+'.join(pressed_keys) + '+' + key_name if pressed_keys else key_name
+                        writer.writerow([combination])
+                        self.log_display.insert(tk.END, combination + "\n")
+                        self.log_display.see(tk.END)
                         pressed_keys.clear()
-                    f.flush()
                 elif event.event_type == keyboard.KEY_UP:
                     key_name = event.name
                     key_name = self.normalized_keys.get(key_name, key_name)
-                    if key_name in self.special_keys:
-                        pressed_keys.discard(key_name)
+                    pressed_keys.discard(key_name)
 
     def start_logging(self):
         if not self.is_logging:
@@ -54,6 +67,10 @@ class KeyLogger:
             self.log_thread = threading.Thread(target=self.log_keystrokes, daemon=True)
             self.log_thread.start()
 
+            self.start_btn.config(state=tk.DISABLED)
+            self.stop_btn.config(state=tk.NORMAL)
+            self.status_label.config(text=f"Status: Logging (Saving to {self.filename})")
+
     def stop_logging(self):
         if self.is_logging:
             self.is_logging = False
@@ -61,31 +78,13 @@ class KeyLogger:
             if self.log_thread:
                 self.log_thread.join()
 
-    def __enter__(self):
-        self.start_logging()
-        return self
+            self.start_btn.config(state=tk.NORMAL)
+            self.stop_btn.config(state=tk.DISABLED)
+            self.status_label.config(text=f"Status: Logging Stopped. File: {self.filename}")
+            messagebox.showinfo("Logging Stopped", f"Keystrokes saved to {self.filename}")
 
-    def __exit__(self, exc_type, exc_value, traceback):
-        self.stop_logging()
-
-    def get_logged_data(self):
-        if self.filename:
-            return pd.read_csv(self.filename)
-        return pd.DataFrame(columns=["Key Combination"])
-
-# Streamlit UI setup
-st.title('Keyboard Logger')
-
-if st.button('Start Logging'):
-    key_logger = KeyLogger()
-    key_logger.__enter__()
-    st.success(f"Logging started! Press 'Stop Logging' to stop and save to {key_logger.filename}.")
-    st.session_state['key_logger'] = key_logger
-
-if st.button('Stop Logging') and 'key_logger' in st.session_state:
-    st.session_state['key_logger'].__exit__(None, None, None)
-    st.success(f"Logging stopped! Check {st.session_state['key_logger'].filename} for recorded keystrokes.")
-    logged_data = st.session_state['key_logger'].get_logged_data()
-    st.write("Recorded Keystrokes:")
-    st.dataframe(logged_data)
-    del st.session_state['key_logger']
+# Create and run the Tkinter app
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = KeyLoggerApp(root)
+    root.mainloop()
