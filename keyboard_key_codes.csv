@@ -1,0 +1,92 @@
+Key,Scan Code
+esc,1
+1,2
+2,3
+3,4
+4,5
+5,6
+6,7
+7,8
+8,9
+9,10
+0,11
+-,12
+=,13
+backspace,14
+tab,15
+q,16
+w,17
+e,18
+r,19
+t,20
+y,21
+u,22
+i,23
+o,24
+p,25
+[,26
+],27
+enter,28
+ctrl,29
+A,30
+S,31
+D,32
+F,33
+G,34
+H,35
+J,36
+K,37
+L,38
+;,39
+',40
+`,41
+shift,42
+\,43
+Z,44
+X,45
+C,46
+V,47
+B,48
+N,49
+M,50
+",",51
+.,52
+/,53
+right shift,54
+print screen,55
+*,55
+alt,56
+right alt,56
+space,57
+caps lock,58
+f1,59
+f2,60
+f3,61
+f4,62
+f5,63
+f6,64
+f7,65
+f8,66
+f9,67
+f10,68
+pause,69
+num lock,69
+scroll lock,70
+home,71
+up,72
+page up,73
+-,74
+left,75
+clear,76
+right,77
++,78
+end,79
+down,80
+page down,81
+insert,82
+delete,83
+\,86
+f11,87
+f12,88
+left windows,91
+menu,93

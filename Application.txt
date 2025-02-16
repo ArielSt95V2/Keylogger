@@ -1,0 +1,74 @@
+
+	
+		Save	- (Num)					
+
+	Edit		
+		Undo	Ctrl+Z	
+		Redo	Ctrl+Shift+Z	
+		Cut	Ctrl+X	
+		Paste	Ctrl+V	
+
+
+
+		Add Edit	0 (Num)	
+
+		Lift	Ctrl+Shift+D	
+		Extract	Ctrl+Shift+S	
+		Zoom In	/ (Num)	
+		Zoom Out	* (Num)		
+
+	Extend Next Edit To Playhead	Shift+D	
+	Extend Previous Edit To Playhead	Shift+A		
+	Go to Next Edit Point	Down, E	
+	Go to Next Edit Point on Any Track	Shift+Down, D		
+	Go to Previous Edit Point	Up, Q	
+	Go to Previous Edit Point on Any Track	Shift+Up, A					
+	
+	Reveal Nested Sequence	Ctrl+'			
+	Select Camera 1	Alt+Shift+1	
+	Select Camera 2	Alt+Shift+2	
+	Select Camera 3	Alt+Shift+3	
+	Select Camera 4	Alt+Shift+4	
+	Select Camera 5	Alt+Shift+5		
+	Select Clip at Playhead	Shift+S	
+				
+	Select Next Clip	Shift+E		
+	Select Previous Clip	Shift+Q	
+		
+	Step Back 1 Frame	Left	
+	Step Back Many Frames - Units	Shift+Left	
+	Step Forward 1 Frame	Right	
+	Step Forward Many Frames - Units	Shift+Right			
+	Toggle Target Audio 1	Ctrl+4 (Num)	
+	Toggle Target Audio 2	Ctrl+8 (Num)	
+	Toggle Target Audio 3	Ctrl+6 (Num)	
+	Toggle Target Audio 4	Ctrl+2 (Num)				
+	Trim Backward	Ctrl+Left	
+	Trim Backward Many	Ctrl+Shift+Left	
+	Trim Forward	Ctrl+Right	
+	Trim Forward Many	Ctrl+Shift+Right	
+	Trim Next Edit to Playhead	Ctrl+D	
+	Trim Previous Edit to Playhead	Ctrl+A		
+	Zoom to Frame	N	
+	Zoom to Sequence	Ctrl+N	
+Panels		
+		
+	Effects Panel		
+		Effects Panel Menu		
+			New Custom Bin	Ctrl+B		
+			New Bin From Selection	B	
+		Zoom In	/ (Num)	
+		Zoom Out	* (Num)		
+	Timeline Panel			
+		Go to next caption segment	Ctrl+Alt+Down	
+		Go to previous caption segment	Ctrl+Alt+Up		
+		Nudge Clip Selection Down	Alt+Down	
+		Nudge Clip Selection Left Five Frames	Alt+Shift+Left	
+		Nudge Clip Selection Left One Frame	Alt+Left	
+		Nudge Clip Selection Right Five Frames	Alt+Shift+Right	
+		Nudge Clip Selection Right One Frame	Alt+Right	
+		Nudge Clip Selection Up	Alt+Up	
+		Paste To Same Track	Ctrl+V	
+		Paste To Target Track	S		
+		
+
